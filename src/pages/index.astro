@@ -11,32 +11,13 @@ const FEATURED = {
   <main class="stage">
     <div class="inner">
       <header class="brand">
-        <a class="logo-link" href="/" aria-label="The Last Frame — home">
-          <!-- width/height attributes prevent SVG from expanding to fill the viewport in some browsers -->
-          <svg
-            class="logo-svg"
-            width="48"
-            height="48"
-            viewBox="0 0 48 48"
-            role="img"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient id="logoGold" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#e8d5a3"></stop>
-                <stop offset="100%" stop-color="#9a7b2c"></stop>
-              </linearGradient>
-            </defs>
-            <rect x="1" y="1" width="46" height="46" rx="10" fill="#0c0c0f" stroke="url(#logoGold)" stroke-width="1"></rect>
-            <rect x="11" y="13" width="26" height="18" rx="2" fill="#060608" stroke="#2a2824" stroke-width="0.8"></rect>
-            <path d="M20 18l10 6.5-10 6.5V18z" fill="url(#logoGold)"></path>
-          </svg>
+        <a class="wordmark-link" href="/" aria-label="The Last Frame — home">
+          <h1 class="wordmark">
+            <span class="wordmark-line wordmark-line--pre">The Last</span>
+            <span class="wordmark-line wordmark-line--core">Frame</span>
+          </h1>
         </a>
-
-        <div class="brand-copy">
-          <h1 class="brand-name">The Last Frame</h1>
-          <p class="tagline">the best of scifi and horror</p>
-        </div>
+        <p class="tagline">the best of scifi and horror</p>
       </header>
 
       <div class="rule" aria-hidden="true"></div>
@@ -93,50 +74,56 @@ const FEATURED = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.85rem;
     width: 100%;
   }
 
-  .logo-link {
+  .wordmark-link {
     display: block;
-    line-height: 0;
     text-decoration: none;
+    color: inherit;
     border: none;
     outline: none;
   }
 
-  .logo-link:focus-visible {
-    border-radius: 12px;
-    box-shadow: 0 0 0 2px #08080a, 0 0 0 4px #c9a227;
+  .wordmark-link:focus-visible .wordmark {
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px #08080a, 0 0 0 4px rgba(201, 162, 39, 0.65);
   }
 
-  /* Hard cap: SVG must never scale past 48px (fixes giant-logo bug) */
-  .logo-svg {
-    display: block;
-    width: 48px !important;
-    height: 48px !important;
-    max-width: 48px !important;
-    max-height: 48px !important;
-    flex-shrink: 0;
-    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
-  }
-
-  .brand-copy {
+  .wordmark {
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
     align-items: center;
+    gap: 0.1rem;
+    line-height: 1;
   }
 
-  .brand-name {
-    margin: 0;
+  .wordmark-line {
+    display: block;
+  }
+
+  /* Upper line: title card / billing */
+  .wordmark-line--pre {
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: clamp(0.65rem, 1.8vw, 0.72rem);
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: #9c958b;
+  }
+
+  /* Hero word — title-card weight */
+  .wordmark-line--core {
     font-family: "Cormorant Garamond", Georgia, serif;
     font-weight: 700;
-    font-size: clamp(1.65rem, 4.5vw, 2.1rem);
-    letter-spacing: 0.02em;
-    line-height: 1.1;
+    font-size: clamp(2.35rem, 9vw, 3.35rem);
+    letter-spacing: 0.06em;
     color: #faf8f4;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    text-shadow:
+      0 2px 28px rgba(0, 0, 0, 0.5),
+      0 0 48px rgba(201, 162, 39, 0.12);
   }
 
   .tagline {
