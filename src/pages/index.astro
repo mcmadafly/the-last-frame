@@ -11,12 +11,19 @@ const FEATURED = {
   <main class="stage">
     <div class="inner">
       <header class="brand">
-        <a class="wordmark-link" href="/" aria-label="The Last Frame — home">
-          <h1 class="wordmark">
-            <span class="wordmark-line wordmark-line--pre">The Last</span>
-            <span class="wordmark-line wordmark-line--core">Frame</span>
-          </h1>
-        </a>
+        <h1 class="brand-heading">
+          <a class="wordmark-link" href="/">
+            <img
+              class="logo-img"
+              src="/the-last-frame-logo.svg"
+              alt="The Last Frame"
+              width="196"
+              height="74"
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+        </h1>
         <p class="tagline">the best of scifi and horror</p>
       </header>
 
@@ -78,52 +85,31 @@ const FEATURED = {
     width: 100%;
   }
 
+  .brand-heading {
+    margin: 0;
+    line-height: 0;
+  }
+
   .wordmark-link {
-    display: block;
+    display: inline-block;
     text-decoration: none;
     color: inherit;
     border: none;
     outline: none;
   }
 
-  .wordmark-link:focus-visible .wordmark {
-    border-radius: 4px;
+  .wordmark-link:focus-visible {
+    border-radius: 8px;
     box-shadow: 0 0 0 2px #08080a, 0 0 0 4px rgba(201, 162, 39, 0.65);
   }
 
-  .wordmark {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.1rem;
-    line-height: 1;
-  }
-
-  .wordmark-line {
+  .logo-img {
     display: block;
-  }
-
-  /* Upper line: title card / billing */
-  .wordmark-line--pre {
-    font-family: "Manrope", system-ui, sans-serif;
-    font-size: clamp(0.65rem, 1.8vw, 0.72rem);
-    font-weight: 600;
-    letter-spacing: 0.42em;
-    text-transform: uppercase;
-    color: #9c958b;
-  }
-
-  /* Hero word — title-card weight */
-  .wordmark-line--core {
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-weight: 700;
-    font-size: clamp(2.35rem, 9vw, 3.35rem);
-    letter-spacing: 0.06em;
-    color: #faf8f4;
-    text-shadow:
-      0 2px 28px rgba(0, 0, 0, 0.5),
-      0 0 48px rgba(201, 162, 39, 0.12);
+    width: min(100%, 240px);
+    max-width: 100%;
+    height: auto;
+    /* intrinsic 196×74 — prevent runaway scaling */
+    max-height: 92px;
   }
 
   .tagline {
