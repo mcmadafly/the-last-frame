@@ -1,0 +1,293 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+/** Official Sony Pictures trailer — swap `id` / metadata when you rotate the feature. */
+const FEATURED = {
+  title: "28 Years Later",
+  tagline: "The infection evolved. So did the world.",
+  youtubeId: "UdRkVQVoM1U",
+  channelUrl: "https://www.youtube.com/@SonyPictures",
+  context: "Danny Boyle and Alex Garland return to the world of 28 Days Later — in theaters June 20.",
+} as const;
+---
+
+<BaseLayout
+  title="The Last Frame — Horror & sci-fi trailers, curated"
+  description="Community-driven archive of horror and sci-fi: official trailer embeds, reviews, and ranked lists."
+>
+  <div class="page">
+    <header class="header">
+      <a class="brand" href="/" aria-label="The Last Frame home">
+        <svg class="logo" viewBox="0 0 48 48" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color: #f0d78c"></stop>
+              <stop offset="100%" style="stop-color: #8b6914"></stop>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="10" fill="#0c0b09" stroke="url(#g)" stroke-width="1.25"></rect>
+          <rect x="8" y="10" width="32" height="24" rx="2" fill="#12100e" stroke="#3d3428" stroke-width="0.75"></rect>
+          <rect x="10" y="12" width="4" height="3" rx="0.5" fill="#2a241c" opacity="0.9"></rect>
+          <rect x="10" y="17" width="4" height="3" rx="0.5" fill="#2a241c" opacity="0.75"></rect>
+          <rect x="10" y="22" width="4" height="3" rx="0.5" fill="#2a241c" opacity="0.6"></rect>
+          <rect x="34" y="12" width="4" height="3" rx="0.5" fill="#2a241c" opacity="0.9"></rect>
+          <rect x="34" y="17" width="4" height="3" rx="0.5" fill="#2a241c" opacity="0.75"></rect>
+          <rect x="34" y="22" width="4" height="3" rx="0.5" fill="#2a241c" opacity="0.6"></rect>
+          <path d="M21 18l10 6-10 6V18z" fill="url(#g)"></path>
+        </svg>
+        <div class="wordmark">
+          <span class="name">The Last Frame</span>
+          <span class="sub">Archive</span>
+        </div>
+      </a>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <p class="eyebrow">Horror &amp; sci-fi</p>
+        <h1 class="headline">Where trailers get context—not just clicks.</h1>
+        <p class="lede">
+          A community archive of official embeds, original reviews, and ranked lists. Watch from the source, then
+          argue about what deserves the <em>last frame</em>.
+        </p>
+      </section>
+
+      <section class="feature" aria-labelledby="feature-heading">
+        <div class="feature-head">
+          <h2 id="feature-heading" class="feature-title">Featured trailer</h2>
+          <span class="pill">Coming soon</span>
+        </div>
+        <article class="card">
+          <div class="card-top">
+            <h3 class="film-title">{FEATURED.title}</h3>
+            <p class="film-tagline">{FEATURED.tagline}</p>
+            <p class="film-context">{FEATURED.context}</p>
+          </div>
+          <div class="embed-wrap">
+            <iframe
+              title={`${FEATURED.title} — official trailer (YouTube)`}
+              src={`https://www.youtube-nocookie.com/embed/${FEATURED.youtubeId}?rel=0&modestbranding=1`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p class="attribution">
+            Trailer via
+            <a href={FEATURED.channelUrl} target="_blank" rel="noopener noreferrer">Sony Pictures on YouTube</a>.
+            Always watch on official channels when you can.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>The Last Frame</span>
+      <span class="dot" aria-hidden="true">·</span>
+      <span>Built for fans of the dark and the cosmic.</span>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.875rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo {
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 20px rgba(201, 162, 39, 0.15));
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .name {
+    font-family: "Cinzel", "Palatino Linotype", serif;
+    font-weight: 600;
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #f2ebe3;
+  }
+
+  .sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(232, 228, 220, 0.45);
+    margin-top: 0.2rem;
+  }
+
+  .main {
+    flex: 1;
+  }
+
+  .hero {
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c9a227;
+  }
+
+  .headline {
+    margin: 0 0 1rem;
+    font-family: "Cinzel", serif;
+    font-weight: 500;
+    font-size: clamp(1.75rem, 4.5vw, 2.35rem);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: #faf6ef;
+  }
+
+  .lede {
+    margin: 0;
+    max-width: 42rem;
+    font-size: 1.05rem;
+    color: rgba(232, 228, 220, 0.78);
+  }
+
+  .lede em {
+    font-style: italic;
+    color: #e8dcc4;
+  }
+
+  .feature-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-title {
+    margin: 0;
+    font-family: "Cinzel", serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 239, 0.92);
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0a0908;
+    background: linear-gradient(135deg, #e8c547, #c9a227);
+  }
+
+  .card {
+    border-radius: 14px;
+    border: 1px solid rgba(201, 162, 39, 0.22);
+    background: linear-gradient(165deg, rgba(26, 22, 18, 0.92) 0%, rgba(10, 9, 8, 0.96) 100%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 24px 48px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+
+  .card-top {
+    padding: 1.35rem 1.35rem 0;
+  }
+
+  .film-title {
+    margin: 0 0 0.35rem;
+    font-family: "Cinzel", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fffaf2;
+  }
+
+  .film-tagline {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    color: rgba(232, 228, 220, 0.88);
+    font-style: italic;
+  }
+
+  .film-context {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(232, 228, 220, 0.58);
+  }
+
+  .embed-wrap {
+    position: relative;
+    margin-top: 1.25rem;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .embed-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .attribution {
+    margin: 0;
+    padding: 1rem 1.35rem 1.35rem;
+    font-size: 0.8rem;
+    color: rgba(232, 228, 220, 0.5);
+    line-height: 1.5;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.8rem;
+    color: rgba(232, 228, 220, 0.38);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .dot {
+    opacity: 0.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+    }
+  }
+</style>

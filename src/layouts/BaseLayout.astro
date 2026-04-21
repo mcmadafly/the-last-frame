@@ -1,0 +1,65 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "The Last Frame",
+  description = "A dark, cinematic archive of horror and sci-fi trailers—with context, reviews, and community.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0908" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    background: radial-gradient(120% 80% at 50% -10%, #1a1410 0%, #0a0908 45%, #050403 100%);
+    color: #e8e4dc;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #d4af37;
+    text-decoration-color: rgba(212, 175, 55, 0.45);
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: #f0d78c;
+  }
+</style>
