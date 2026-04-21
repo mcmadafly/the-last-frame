@@ -3,7 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const TMDB_IMG = "https://image.tmdb.org/t/p/w780";
 
-/** Extra 2026 titles cross-checked against Letterboxd lists (e.g. tracedthurman/list/2026-horror-films). Posters from TMDB. */
+/**
+ * 2026 horror / sci-fi calendar. Titles and slugs cross-checked against Letterboxd member lists
+ * (e.g. letterboxd.com/tracedthurman/list/2026-horror-films); each film’s `data-tmdb-id` on Letterboxd
+ * maps to poster art on TMDB. Dates are US theatrical / primary streaming where known.
+ */
 
 type Genre = "horror" | "sci-fi";
 
@@ -16,7 +20,7 @@ type Film = {
 };
 
 const FILMS: Film[] = [
-  // Released (chronological, US unless noted)
+  // Released (through ~Apr 20, 2026 US; chronological)
   { title: "We Bury the Dead", date: "January 2, 2026", posterPath: "xZqo0yPARmyF8TACVNyaOACkYWG.jpg", status: "released", genres: ["horror"] },
   { title: "Primate", date: "January 9, 2026", posterPath: "z97hrgI5wbGbZvSVkBfAeBnFKAg.jpg", status: "released", genres: ["horror"] },
   { title: "28 Years Later: The Bone Temple", date: "January 16, 2026", posterPath: "kK1BGkG3KAvWB0WMV1DfOx9yTMZ.jpg", status: "released", genres: ["horror", "sci-fi"] },
@@ -25,9 +29,11 @@ const FILMS: Film[] = [
   { title: "Iron Lung", date: "January 30, 2026", posterPath: "sIwakdbMGS1krtgendTWpxTY9Hw.jpg", status: "released", genres: ["horror", "sci-fi"] },
   { title: "Worldbreaker", date: "January 30, 2026", posterPath: "4xx25oYs08myEelHiSbOuVi80Ki.jpg", status: "released", genres: ["horror", "sci-fi"] },
   { title: "The Strangers: Chapter 3", date: "February 6, 2026", posterPath: "yPHwX78mcwJw3I6YOJ9qh2wQBFr.jpg", status: "released", genres: ["horror"] },
+  { title: "Twisted", date: "February 6, 2026", posterPath: "rF6txsM6cgF9vg6Ra5sNbkvUwrw.jpg", status: "released", genres: ["horror"] },
   { title: "Cold Storage", date: "February 13, 2026", posterPath: "3HA2iiq982e01EKXJvPFyfMADVM.jpg", status: "released", genres: ["horror", "sci-fi"] },
   { title: "Good Luck, Have Fun, Don't Die", date: "February 13, 2026", posterPath: "rWcfOdY7TU6lTdazWj0ebDZnAfO.jpg", status: "released", genres: ["sci-fi"] },
   { title: "Honey Bunch", date: "February 13, 2026 (Shudder)", posterPath: "rR6zS2sPpcjND92cCLmsuMNok7M.jpg", status: "released", genres: ["horror", "sci-fi"] },
+  { title: "It Will Find You", date: "February 19, 2026", posterPath: "3Hn2RAbU9lGdtooayLDpo6iZCQv.jpg", status: "released", genres: ["horror"] },
   { title: "Psycho Killer", date: "February 20, 2026", posterPath: "5xgxxmLivJXL8aF0HdZfpx8aAIo.jpg", status: "released", genres: ["horror"] },
   { title: "Scream 7", date: "February 27, 2026", posterPath: "jjyuk0edLiW8vOSnlfwWCCLpbh5.jpg", status: "released", genres: ["horror"] },
   { title: "The Bride!", date: "March 6, 2026", posterPath: "lV8YHwGkYZsm6EfIqnhaSz2avKt.jpg", status: "released", genres: ["horror"] },
@@ -36,15 +42,25 @@ const FILMS: Film[] = [
   { title: "Do Not Enter", date: "March 20, 2026", posterPath: "stM9N7eJmHKLmFR59JG4tLdN7Wk.jpg", status: "released", genres: ["horror"] },
   { title: "Touch Me", date: "March 20, 2026", posterPath: "drcloenCH7ZautM7hnd9r9WScNV.jpg", status: "released", genres: ["horror", "sci-fi"] },
   { title: "They Will Kill You", date: "March 27, 2026", posterPath: "nSXCFSvI2p5WLgMrOHACbVnEJSR.jpg", status: "released", genres: ["horror"] },
-  // Coming
+  { title: "Forbidden Fruits", date: "March 27, 2026", posterPath: "t3hvrrrqvRoURz4y1A1aCys6WD9.jpg", status: "released", genres: ["horror"] },
+  { title: "Faces of Death", date: "April 10, 2026", posterPath: "vPVY3S57lEooBLJCg6KGdMHkUxm.jpg", status: "released", genres: ["horror"] },
+  { title: "The Whistler", date: "April 17, 2026", posterPath: "sX8tqkFR1aqZaLQ4Jgb8jEMB4RN.jpg", status: "released", genres: ["horror"] },
+  { title: "Lee Cronin's The Mummy", date: "April 18, 2026", posterPath: "8L8efNkz8rUmwR7sV0g3vnC9yjn.jpg", status: "released", genres: ["horror"] },
+  // Coming (Apr 20, 2026 and later)
   { title: "Weekend at the End of the World", date: "April 20, 2026", posterPath: "lmkxctsfitUnLTbqLJHFjGJr5ru.jpg", status: "coming", genres: ["horror", "sci-fi"] },
+  { title: "Over Your Dead Body", date: "April 24, 2026", posterPath: "l5iroeWTrP9tspGYQonagH7Tcds.jpg", status: "coming", genres: ["horror"] },
+  { title: "Deep Water", date: "May 1, 2026", posterPath: "2cikvQU83ecoZncnjOmAAATr3Sp.jpg", status: "coming", genres: ["horror"] },
+  { title: "Hokum", date: "May 1, 2026", posterPath: "gC4FtEthYvx6XV2JHCQibf4P3FT.jpg", status: "coming", genres: ["horror"] },
   { title: "Mortal Kombat II", date: "May 8, 2026", posterPath: "io7wVbm9VKaanIcuAymCDy9dmjU.jpg", status: "coming", genres: ["sci-fi"] },
+  { title: "Colony", date: "May 21, 2026", posterPath: "3pKJMW5xehwaxpQdF7oIZnyhIfo.jpg", status: "coming", genres: ["horror", "sci-fi"] },
   { title: "The Mandalorian and Grogu", date: "May 22, 2026", posterPath: "m8lEffySgTuKxN3VsMd2gdgx1aw.jpg", status: "coming", genres: ["sci-fi"] },
+  { title: "Corporate Retreat", date: "May 22, 2026", posterPath: "sciPl4coQWdsWtRQBUau7xnNYue.jpg", status: "coming", genres: ["horror"] },
   { title: "Backrooms", date: "May 29, 2026", posterPath: "vpkNMkbisv5cTaIfCzUduYzXnjb.jpg", status: "coming", genres: ["horror"] },
   { title: "Masters of the Universe", date: "June 5, 2026", posterPath: "nm2ianYVp7OXElUZVeeAbNTqBLr.jpg", status: "coming", genres: ["sci-fi"] },
   { title: "Disclosure Day", date: "June 12, 2026", posterPath: "7RYO0KTXIJ0rS0LqnCQLxeNR3P3.jpg", status: "coming", genres: ["sci-fi"] },
   { title: "Supergirl", date: "June 26, 2026", posterPath: "niSvU02l2BONH9ivubV6K1a5QiK.jpg", status: "coming", genres: ["sci-fi"] },
   { title: "Evil Dead Burn", date: "July 24, 2026", posterPath: null, status: "coming", genres: ["horror"] },
+  { title: "Ice Cream Man", date: "August 7, 2026", posterPath: "uuQv2MDvfym1UluVyC5mRE86eFJ.jpg", status: "coming", genres: ["horror"] },
   { title: "The End of Oak Street", date: "August 14, 2026", posterPath: "u9jha7bkttIrc5RO1TWeSn7QVyI.jpg", status: "coming", genres: ["sci-fi"] },
   { title: "Insidious: Out of the Further", date: "August 21, 2026", posterPath: "4tTrW9dXCByS5wt2pXVWb58zNjz.jpg", status: "coming", genres: ["horror"] },
   { title: "Resident Evil", date: "September 18, 2026", posterPath: "3WkDXYtOwYHFFkpysAPxPgUMox0.jpg", status: "coming", genres: ["horror", "sci-fi"] },
@@ -142,7 +158,7 @@ const FILMS: Film[] = [
         <a class="text-link" href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">
           TMDB
         </a>
-        . Additional 2026 titles sourced from Letterboxd lists such as{" "}
+        . Many titles were discovered via Letterboxd (e.g.{" "}
         <a
           class="text-link"
           href="https://letterboxd.com/tracedthurman/list/2026-horror-films/"
@@ -151,7 +167,7 @@ const FILMS: Film[] = [
         >
           2026 Horror Films
         </a>
-        .
+        ); each Letterboxd film page exposes a TMDB id for matching posters.
       </p>
     </div>
   </main>
