@@ -48,6 +48,7 @@ const {
     margin: 0;
     min-height: 100vh;
     min-height: 100dvh;
+    overflow-x: hidden;
     font-family: "Manrope", system-ui, sans-serif;
     font-weight: 500;
     background: #08080a;
@@ -79,14 +80,15 @@ const {
     z-index: 1;
   }
 
-  a {
+  /* Only style explicit text links — do not style logo / layout as links */
+  .text-link {
     color: #c9b896;
     text-decoration: none;
     border-bottom: 1px solid rgba(201, 184, 150, 0.35);
     transition: color 0.15s ease, border-color 0.15s ease;
   }
 
-  a:hover {
+  .text-link:hover {
     color: #ede6d8;
     border-bottom-color: rgba(237, 230, 216, 0.5);
   }
