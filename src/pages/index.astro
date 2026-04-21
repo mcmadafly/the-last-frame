@@ -1,25 +1,30 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-/** Chronological 2026 US dates; `youtubeId` null = no official trailer on YouTube yet (Apr 2026). */
+/**
+ * Chronological 2026 US dates.
+ * Posters: TMDB CDN (`w780`), except Evil Dead Burn — no poster on TMDB yet (Apr 2026).
+ */
+const TMDB_IMG = "https://image.tmdb.org/t/p/w780";
+
 const UPCOMING = [
-  { title: "Weekend at the End of the World", date: "April 20, 2026", youtubeId: "YYeeDYYEbeo" },
-  { title: "Mortal Kombat II", date: "May 8, 2026", youtubeId: "z6fz_ewTKTs" },
-  { title: "The Mandalorian and Grogu", date: "May 22, 2026", youtubeId: "IHWlvwu8t1w" },
-  { title: "Backrooms", date: "May 29, 2026", youtubeId: "wek9dIw2uVM" },
-  { title: "Masters of the Universe", date: "June 5, 2026", youtubeId: "X21JsHLHnY8" },
-  { title: "Disclosure Day", date: "June 12, 2026", youtubeId: "89uCBeGBIJQ" },
-  { title: "Supergirl", date: "June 26, 2026", youtubeId: "s1-pfiVMKAs" },
-  { title: "Evil Dead Burn", date: "July 24, 2026", youtubeId: null },
-  { title: "The End of Oak Street", date: "August 14, 2026", youtubeId: "mzHx2Iz582s" },
-  { title: "Insidious: Out of the Further", date: "August 21, 2026", youtubeId: "jxU8FU3o75A" },
-  { title: "Resident Evil", date: "September 18, 2026", youtubeId: null },
-  { title: "Godzilla Minus Zero", date: "November 6, 2026", youtubeId: "n-NDYWPXpKg" },
-  { title: "Dune: Part Three", date: "December 18, 2026", youtubeId: "w0KyEhJ-0S0" },
+  { title: "Weekend at the End of the World", date: "April 20, 2026", posterPath: "lmkxctsfitUnLTbqLJHFjGJr5ru.jpg" },
+  { title: "Mortal Kombat II", date: "May 8, 2026", posterPath: "io7wVbm9VKaanIcuAymCDy9dmjU.jpg" },
+  { title: "The Mandalorian and Grogu", date: "May 22, 2026", posterPath: "m8lEffySgTuKxN3VsMd2gdgx1aw.jpg" },
+  { title: "Backrooms", date: "May 29, 2026", posterPath: "vpkNMkbisv5cTaIfCzUduYzXnjb.jpg" },
+  { title: "Masters of the Universe", date: "June 5, 2026", posterPath: "nm2ianYVp7OXElUZVeeAbNTqBLr.jpg" },
+  { title: "Disclosure Day", date: "June 12, 2026", posterPath: "7RYO0KTXIJ0rS0LqnCQLxeNR3P3.jpg" },
+  { title: "Supergirl", date: "June 26, 2026", posterPath: "niSvU02l2BONH9ivubV6K1a5QiK.jpg" },
+  { title: "Evil Dead Burn", date: "July 24, 2026", posterPath: null },
+  { title: "The End of Oak Street", date: "August 14, 2026", posterPath: "u9jha7bkttIrc5RO1TWeSn7QVyI.jpg" },
+  { title: "Insidious: Out of the Further", date: "August 21, 2026", posterPath: "4tTrW9dXCByS5wt2pXVWb58zNjz.jpg" },
+  { title: "Resident Evil", date: "September 18, 2026", posterPath: "3WkDXYtOwYHFFkpysAPxPgUMox0.jpg" },
+  { title: "Godzilla Minus Zero", date: "November 6, 2026", posterPath: "zOeAduPBa1NZyX9TCcWXVpnHy3T.jpg" },
+  { title: "Dune: Part Three", date: "December 18, 2026", posterPath: "b4wekkUaxExzOeGe7hKXzhnyXHt.jpg" },
 ];
 ---
 
-<BaseLayout title="The Last Frame" description="Trailers and upcoming releases.">
+<BaseLayout title="The Last Frame" description="Upcoming releases and posters.">
   <main class="stage">
     <div class="inner">
       <header class="brand">
@@ -45,39 +50,46 @@ const UPCOMING = [
         Coming in 2026
       </p>
 
-      <div class="trailer-list">
+      <div class="poster-list">
         {
           UPCOMING.map((item) => (
-            <article class="trailer-block">
-              <div class="screen">
+            <article class="poster-block">
+              <div class="frame-wrap">
                 <div class="screen-bezel">
                   <div class="screen-glare" aria-hidden="true"></div>
-                  {item.youtubeId ? (
-                    <div class="screen-video">
-                      <iframe
-                        title={`Trailer: ${item.title}`}
-                        src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}?rel=0&modestbranding=1`}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen
+                  {item.posterPath ? (
+                    <div class="poster-surface">
+                      <img
+                        class="poster-img"
+                        src={`${TMDB_IMG}/${item.posterPath}`}
+                        alt={`Theatrical poster: ${item.title}`}
+                        width={780}
+                        height={1170}
                         loading="lazy"
-                      ></iframe>
+                        decoding="async"
+                        sizes="(max-width: 480px) 72vw, 280px"
+                      />
                     </div>
                   ) : (
-                    <div class="screen-video screen-video--placeholder">
-                      <p class="placeholder-text">
-                        Official trailer not on YouTube yet — check back after the studio drop.
-                      </p>
+                    <div class="poster-surface poster-surface--empty">
+                      <p class="poster-missing">No poster on TMDB yet</p>
                     </div>
                   )}
                 </div>
               </div>
-              <h2 class="trailer-title">{item.title}</h2>
-              <p class="trailer-date">{item.date}</p>
+              <h2 class="poster-title">{item.title}</h2>
+              <p class="poster-date">{item.date}</p>
             </article>
           ))
         }
       </div>
+
+      <p class="attribution">
+        Poster images from{" "}
+        <a class="text-link" href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">
+          The Movie Database (TMDB)
+        </a>
+      </p>
     </div>
   </main>
 </BaseLayout>
@@ -165,7 +177,7 @@ const UPCOMING = [
     flex-shrink: 0;
   }
 
-  .trailer-list {
+  .poster-list {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -173,7 +185,7 @@ const UPCOMING = [
     gap: clamp(2rem, 5vw, 2.75rem);
   }
 
-  .trailer-block {
+  .poster-block {
     margin: 0;
     width: 100%;
     display: flex;
@@ -182,9 +194,10 @@ const UPCOMING = [
     gap: 0.65rem;
   }
 
-  .screen {
+  .frame-wrap {
     width: 100%;
-    max-width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
   }
 
   .screen-bezel {
@@ -204,49 +217,52 @@ const UPCOMING = [
     border-radius: 4px;
     background: linear-gradient(
       125deg,
-      rgba(255, 255, 255, 0.05) 0%,
-      transparent 40%,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 38%,
       transparent 100%
     );
     z-index: 1;
   }
 
-  .screen-video {
+  .poster-surface {
     position: relative;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 2 / 3;
+    width: 100%;
     border-radius: 4px;
     overflow: hidden;
-    background: #000;
+    background: #0e0d0b;
     z-index: 0;
   }
 
-  .screen-video--placeholder {
+  .poster-surface--empty {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.25rem;
-    background: linear-gradient(180deg, #141210 0%, #0a0908 100%);
+    padding: 1rem;
+    background:
+      linear-gradient(145deg, rgba(201, 162, 39, 0.06) 0%, transparent 45%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(40, 36, 30, 0.9), #0a0908);
   }
 
-  .placeholder-text {
+  .poster-missing {
     margin: 0;
-    max-width: 18rem;
     font-family: "Manrope", system-ui, sans-serif;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    line-height: 1.45;
-    color: #7a746c;
+    line-height: 1.4;
+    color: #6b6560;
+    max-width: 12rem;
   }
 
-  .screen-video iframe {
-    position: absolute;
-    inset: 0;
+  .poster-img {
+    display: block;
     width: 100%;
     height: 100%;
-    border: 0;
+    object-fit: cover;
+    object-position: center top;
   }
 
-  .trailer-title {
+  .poster-title {
     margin: 0;
     font-family: "Manrope", system-ui, sans-serif;
     font-size: clamp(1rem, 2.8vw, 1.125rem);
@@ -257,13 +273,24 @@ const UPCOMING = [
     max-width: 28rem;
   }
 
-  .trailer-date {
+  .poster-date {
     margin: 0;
     font-family: "Manrope", system-ui, sans-serif;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.06em;
     color: #8a847a;
+  }
+
+  .attribution {
+    margin: 2.25rem 0 0;
+    max-width: 22rem;
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
+    color: #5c5752;
   }
 
   @media (prefers-reduced-motion: reduce) {
