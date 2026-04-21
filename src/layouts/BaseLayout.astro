@@ -16,17 +16,18 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0a0908" />
+    <meta name="theme-color" content="#07090d" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@500&family=Syne:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <div class="grain" aria-hidden="true"></div>
     <slot />
   </body>
 </html>
@@ -45,21 +46,41 @@ const {
   body {
     margin: 0;
     min-height: 100vh;
-    font-family: "DM Sans", system-ui, sans-serif;
-    font-optical-sizing: auto;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
     font-weight: 400;
-    background: radial-gradient(120% 80% at 50% -10%, #1a1410 0%, #0a0908 45%, #050403 100%);
-    color: #e8e4dc;
-    line-height: 1.6;
+    background-color: #07090d;
+    background-image:
+      radial-gradient(ellipse 100% 80% at 50% -30%, rgba(56, 189, 248, 0.12), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 100% 0%, rgba(167, 139, 250, 0.06), transparent 45%),
+      linear-gradient(180deg, #0c1220 0%, #07090d 38%, #040506 100%);
+    color: #cbd5e1;
+    line-height: 1.65;
+    position: relative;
+  }
+
+  .grain {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 0;
+  }
+
+  body > *:not(.grain) {
+    position: relative;
+    z-index: 1;
   }
 
   a {
-    color: #d4af37;
-    text-decoration-color: rgba(212, 175, 55, 0.45);
+    color: #7dd3fc;
+    text-decoration-color: rgba(125, 211, 252, 0.4);
     text-underline-offset: 3px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
   }
 
   a:hover {
-    color: #f0d78c;
+    color: #e0f2fe;
+    text-decoration-color: rgba(224, 242, 254, 0.55);
   }
 </style>
