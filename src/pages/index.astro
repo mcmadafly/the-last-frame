@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const TMDB_IMG = "https://image.tmdb.org/t/p/w780";
 
+/** Extra 2026 titles cross-checked against Letterboxd lists (e.g. tracedthurman/list/2026-horror-films). Posters from TMDB. */
+
 type Genre = "horror" | "sci-fi";
 
 type Film = {
@@ -14,17 +16,26 @@ type Film = {
 };
 
 const FILMS: Film[] = [
-  // Released (chronological)
+  // Released (chronological, US unless noted)
   { title: "We Bury the Dead", date: "January 2, 2026", posterPath: "xZqo0yPARmyF8TACVNyaOACkYWG.jpg", status: "released", genres: ["horror"] },
   { title: "Primate", date: "January 9, 2026", posterPath: "z97hrgI5wbGbZvSVkBfAeBnFKAg.jpg", status: "released", genres: ["horror"] },
   { title: "28 Years Later: The Bone Temple", date: "January 16, 2026", posterPath: "kK1BGkG3KAvWB0WMV1DfOx9yTMZ.jpg", status: "released", genres: ["horror", "sci-fi"] },
   { title: "Return to Silent Hill", date: "January 23, 2026", posterPath: "fqAGFN2K2kDL0EHxvJaXzaMUkkt.jpg", status: "released", genres: ["horror"] },
   { title: "Send Help", date: "January 30, 2026", posterPath: "mjkS2iAgWj3ik1DTjvI15nHZ7yl.jpg", status: "released", genres: ["horror"] },
   { title: "Iron Lung", date: "January 30, 2026", posterPath: "sIwakdbMGS1krtgendTWpxTY9Hw.jpg", status: "released", genres: ["horror", "sci-fi"] },
+  { title: "Worldbreaker", date: "January 30, 2026", posterPath: "4xx25oYs08myEelHiSbOuVi80Ki.jpg", status: "released", genres: ["horror", "sci-fi"] },
+  { title: "The Strangers: Chapter 3", date: "February 6, 2026", posterPath: "yPHwX78mcwJw3I6YOJ9qh2wQBFr.jpg", status: "released", genres: ["horror"] },
+  { title: "Cold Storage", date: "February 13, 2026", posterPath: "3HA2iiq982e01EKXJvPFyfMADVM.jpg", status: "released", genres: ["horror", "sci-fi"] },
+  { title: "Good Luck, Have Fun, Don't Die", date: "February 13, 2026", posterPath: "rWcfOdY7TU6lTdazWj0ebDZnAfO.jpg", status: "released", genres: ["sci-fi"] },
+  { title: "Honey Bunch", date: "February 13, 2026 (Shudder)", posterPath: "rR6zS2sPpcjND92cCLmsuMNok7M.jpg", status: "released", genres: ["horror", "sci-fi"] },
+  { title: "Psycho Killer", date: "February 20, 2026", posterPath: "5xgxxmLivJXL8aF0HdZfpx8aAIo.jpg", status: "released", genres: ["horror"] },
   { title: "Scream 7", date: "February 27, 2026", posterPath: "jjyuk0edLiW8vOSnlfwWCCLpbh5.jpg", status: "released", genres: ["horror"] },
   { title: "The Bride!", date: "March 6, 2026", posterPath: "lV8YHwGkYZsm6EfIqnhaSz2avKt.jpg", status: "released", genres: ["horror"] },
   { title: "Ready or Not: Here I Come", date: "March 20, 2026", posterPath: "jRf89HVEtBZiSnOXXWDhZOfuTwW.jpg", status: "released", genres: ["horror"] },
   { title: "Project Hail Mary", date: "March 20, 2026", posterPath: "yihdXomYb5kTeSivtFndMy5iDmf.jpg", status: "released", genres: ["sci-fi"] },
+  { title: "Do Not Enter", date: "March 20, 2026", posterPath: "stM9N7eJmHKLmFR59JG4tLdN7Wk.jpg", status: "released", genres: ["horror"] },
+  { title: "Touch Me", date: "March 20, 2026", posterPath: "drcloenCH7ZautM7hnd9r9WScNV.jpg", status: "released", genres: ["horror", "sci-fi"] },
+  { title: "They Will Kill You", date: "March 27, 2026", posterPath: "nSXCFSvI2p5WLgMrOHACbVnEJSR.jpg", status: "released", genres: ["horror"] },
   // Coming
   { title: "Weekend at the End of the World", date: "April 20, 2026", posterPath: "lmkxctsfitUnLTbqLJHFjGJr5ru.jpg", status: "coming", genres: ["horror", "sci-fi"] },
   { title: "Mortal Kombat II", date: "May 8, 2026", posterPath: "io7wVbm9VKaanIcuAymCDy9dmjU.jpg", status: "coming", genres: ["sci-fi"] },
@@ -127,10 +138,20 @@ const FILMS: Film[] = [
       </div>
 
       <p class="attribution">
-        Poster images from{" "}
+        Poster art via{" "}
         <a class="text-link" href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">
-          The Movie Database (TMDB)
+          TMDB
         </a>
+        . Additional 2026 titles sourced from Letterboxd lists such as{" "}
+        <a
+          class="text-link"
+          href="https://letterboxd.com/tracedthurman/list/2026-horror-films/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          2026 Horror Films
+        </a>
+        .
       </p>
     </div>
   </main>
@@ -516,7 +537,7 @@ const FILMS: Film[] = [
 
   .attribution {
     margin: 2.25rem auto 0;
-    max-width: 22rem;
+    max-width: 28rem;
     font-family: "Manrope", system-ui, sans-serif;
     font-size: 0.6875rem;
     font-weight: 500;
