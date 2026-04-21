@@ -8,119 +8,202 @@ const FEATURED = {
 ---
 
 <BaseLayout title="The Last Frame" description="The best of sci-fi and horror — upcoming releases and trailers.">
-  <div class="wrap">
-    <header class="brand-block">
-      <a class="logo-link" href="/" aria-label="The Last Frame home">
-        <svg class="logo-mark" viewBox="0 0 56 56" aria-hidden="true">
-          <rect width="56" height="56" rx="8" fill="#171717" stroke="#262626" stroke-width="1"></rect>
-          <rect x="14" y="16" width="28" height="20" rx="2" fill="#0a0a0a" stroke="#404040" stroke-width="1"></rect>
-          <path d="M24 22l10 6.5-10 6.5V22z" fill="#fafafa"></path>
-        </svg>
-        <span class="logo-type">The Last Frame</span>
-      </a>
+  <main class="stage">
+    <div class="inner">
+      <header class="brand">
+        <a class="brand-link" href="/" aria-label="The Last Frame home">
+          <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true">
+            <defs>
+              <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#e8d5a3"></stop>
+                <stop offset="100%" stop-color="#9a7b2c"></stop>
+              </linearGradient>
+            </defs>
+            <rect x="1" y="1" width="46" height="46" rx="10" fill="#0c0c0f" stroke="url(#gold)" stroke-width="1"></rect>
+            <rect x="11" y="13" width="26" height="18" rx="2" fill="#060608" stroke="#2a2824" stroke-width="0.8"></rect>
+            <path d="M20 18l10 6.5-10 6.5V18z" fill="url(#gold)"></path>
+          </svg>
+          <div class="brand-text">
+            <span class="brand-name">The Last Frame</span>
+            <p class="tagline">the best of scifi and horror</p>
+          </div>
+        </a>
+      </header>
 
-      <p class="tagline">the best of scifi and horror</p>
-    </header>
+      <div class="rule" aria-hidden="true"></div>
 
-    <div class="spacer" aria-hidden="true"></div>
+      <p class="upcoming">
+        <span class="upcoming-dot" aria-hidden="true"></span>
+        Upcoming release
+      </p>
 
-    <p class="upcoming-label">Upcoming release</p>
+      <div class="screen">
+        <div class="screen-bezel">
+          <div class="screen-glare" aria-hidden="true"></div>
+          <div class="screen-video">
+            <iframe
+              title="Featured trailer on YouTube"
+              src={`https://www.youtube-nocookie.com/embed/${FEATURED.youtubeId}?rel=0&modestbranding=1`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
 
-    <div class="video">
-      <iframe
-        title="Featured trailer on YouTube"
-        src={`https://www.youtube-nocookie.com/embed/${FEATURED.youtubeId}?rel=0&modestbranding=1`}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        loading="lazy"
-      ></iframe>
+      <p class="credit">
+        Official embed ·
+        <a href={FEATURED.channelUrl} target="_blank" rel="noopener noreferrer">Sony Pictures on YouTube</a>
+      </p>
     </div>
-
-    <p class="fineprint">
-      Official embed ·
-      <a href={FEATURED.channelUrl} target="_blank" rel="noopener noreferrer">Sony Pictures on YouTube</a>
-    </p>
-  </div>
+  </main>
 </BaseLayout>
 
 <style>
-  .wrap {
-    max-width: 56rem;
-    margin: 0 auto;
-    padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 4vw, 2rem) 3rem;
+  .stage {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.75rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .inner {
+    width: 100%;
+    max-width: 44rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  .brand-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
+  .brand {
+    width: 100%;
   }
 
-  .logo-link {
-    display: flex;
-    flex-direction: column;
+  .brand-link {
+    display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: clamp(0.85rem, 3vw, 1.15rem);
     text-decoration: none;
     color: inherit;
+    text-align: left;
   }
 
-  .logo-mark {
-    width: 3.5rem;
-    height: 3.5rem;
+  @media (max-width: 420px) {
+    .brand-link {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .brand-icon {
+    width: clamp(3rem, 8vw, 3.5rem);
+    height: clamp(3rem, 8vw, 3.5rem);
     flex-shrink: 0;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
   }
 
-  .logo-type {
-    font-weight: 600;
-    font-size: clamp(1.35rem, 3.5vw, 1.75rem);
-    letter-spacing: -0.03em;
-    color: #fafafa;
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .brand-name {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(1.85rem, 5vw, 2.35rem);
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    color: #faf8f4;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
   }
 
   .tagline {
     margin: 0;
-    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    font-family: "Libre Caslon Text", Georgia, serif;
+    font-size: clamp(0.98rem, 2.4vw, 1.125rem);
+    font-style: italic;
     font-weight: 400;
-    color: #a3a3a3;
-    letter-spacing: 0.02em;
+    color: #a39e96;
+    letter-spacing: 0.01em;
+    line-height: 1.35;
   }
 
-  .spacer {
-    width: 100%;
-    height: clamp(2rem, 6vw, 3.5rem);
+  .rule {
+    width: min(12rem, 50vw);
+    height: 1px;
+    margin: clamp(2rem, 5vw, 2.75rem) 0;
+    background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.35), transparent);
+  }
+
+  .upcoming {
+    margin: 0 0 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: #7a756c;
+  }
+
+  .upcoming-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #c9a227;
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.45);
     flex-shrink: 0;
   }
 
-  .upcoming-label {
-    margin: 0 0 1rem;
-    font-size: 0.625rem;
-    font-weight: 500;
-    letter-spacing: 0.45em;
-    text-transform: uppercase;
-    color: #525252;
+  .screen {
     width: 100%;
-    max-width: 42rem;
   }
 
-  .video {
-    width: 100%;
-    max-width: 42rem;
+  .screen-bezel {
+    position: relative;
+    border-radius: 6px;
+    padding: 3px;
+    background: linear-gradient(145deg, #2a2824 0%, #12100e 50%, #1a1814 100%);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+      0 32px 64px -16px rgba(0, 0, 0, 0.75),
+      0 0 80px -20px rgba(201, 162, 39, 0.08);
+  }
+
+  .screen-glare {
+    pointer-events: none;
+    position: absolute;
+    inset: 3px;
+    border-radius: 4px;
+    background: linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 42%,
+      transparent 100%
+    );
+    z-index: 1;
+  }
+
+  .screen-video {
     position: relative;
     aspect-ratio: 16 / 9;
-    background: #000;
-    border-radius: 2px;
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 0 0 1px #262626;
+    background: #000;
+    z-index: 0;
   }
 
-  .video iframe {
+  .screen-video iframe {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -128,11 +211,17 @@ const FEATURED = {
     border: 0;
   }
 
-  .fineprint {
-    margin: 1rem 0 0;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    color: #525252;
+  .credit {
+    margin: 1.25rem 0 0;
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #5c5852;
+  }
+
+  .credit a {
+    font-weight: 600;
   }
 
   @media (prefers-reduced-motion: reduce) {
