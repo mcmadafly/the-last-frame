@@ -1,37 +1,55 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-/**
- * Chronological 2026 US dates.
- * Posters: TMDB CDN (`w780`), except Evil Dead Burn — no poster on TMDB yet (Apr 2026).
- */
 const TMDB_IMG = "https://image.tmdb.org/t/p/w780";
 
-const UPCOMING = [
-  { title: "Weekend at the End of the World", date: "April 20, 2026", posterPath: "lmkxctsfitUnLTbqLJHFjGJr5ru.jpg" },
-  { title: "Mortal Kombat II", date: "May 8, 2026", posterPath: "io7wVbm9VKaanIcuAymCDy9dmjU.jpg" },
-  { title: "The Mandalorian and Grogu", date: "May 22, 2026", posterPath: "m8lEffySgTuKxN3VsMd2gdgx1aw.jpg" },
-  { title: "Backrooms", date: "May 29, 2026", posterPath: "vpkNMkbisv5cTaIfCzUduYzXnjb.jpg" },
-  { title: "Masters of the Universe", date: "June 5, 2026", posterPath: "nm2ianYVp7OXElUZVeeAbNTqBLr.jpg" },
-  { title: "Disclosure Day", date: "June 12, 2026", posterPath: "7RYO0KTXIJ0rS0LqnCQLxeNR3P3.jpg" },
-  { title: "Supergirl", date: "June 26, 2026", posterPath: "niSvU02l2BONH9ivubV6K1a5QiK.jpg" },
-  { title: "Evil Dead Burn", date: "July 24, 2026", posterPath: null },
-  { title: "The End of Oak Street", date: "August 14, 2026", posterPath: "u9jha7bkttIrc5RO1TWeSn7QVyI.jpg" },
-  { title: "Insidious: Out of the Further", date: "August 21, 2026", posterPath: "4tTrW9dXCByS5wt2pXVWb58zNjz.jpg" },
-  { title: "Resident Evil", date: "September 18, 2026", posterPath: "3WkDXYtOwYHFFkpysAPxPgUMox0.jpg" },
-  { title: "Godzilla Minus Zero", date: "November 6, 2026", posterPath: "zOeAduPBa1NZyX9TCcWXVpnHy3T.jpg" },
-  { title: "Dune: Part Three", date: "December 18, 2026", posterPath: "b4wekkUaxExzOeGe7hKXzhnyXHt.jpg" },
+type Genre = "horror" | "sci-fi";
+
+type Film = {
+  title: string;
+  date: string;
+  posterPath: string | null;
+  status: "coming" | "released";
+  genres: Genre[];
+};
+
+const FILMS: Film[] = [
+  // Released (chronological)
+  { title: "We Bury the Dead", date: "January 2, 2026", posterPath: "xZqo0yPARmyF8TACVNyaOACkYWG.jpg", status: "released", genres: ["horror"] },
+  { title: "Primate", date: "January 9, 2026", posterPath: "z97hrgI5wbGbZvSVkBfAeBnFKAg.jpg", status: "released", genres: ["horror"] },
+  { title: "28 Years Later: The Bone Temple", date: "January 16, 2026", posterPath: "kK1BGkG3KAvWB0WMV1DfOx9yTMZ.jpg", status: "released", genres: ["horror", "sci-fi"] },
+  { title: "Return to Silent Hill", date: "January 23, 2026", posterPath: "fqAGFN2K2kDL0EHxvJaXzaMUkkt.jpg", status: "released", genres: ["horror"] },
+  { title: "Send Help", date: "January 30, 2026", posterPath: "mjkS2iAgWj3ik1DTjvI15nHZ7yl.jpg", status: "released", genres: ["horror"] },
+  { title: "Iron Lung", date: "January 30, 2026", posterPath: "sIwakdbMGS1krtgendTWpxTY9Hw.jpg", status: "released", genres: ["horror", "sci-fi"] },
+  { title: "Scream 7", date: "February 27, 2026", posterPath: "jjyuk0edLiW8vOSnlfwWCCLpbh5.jpg", status: "released", genres: ["horror"] },
+  { title: "The Bride!", date: "March 6, 2026", posterPath: "lV8YHwGkYZsm6EfIqnhaSz2avKt.jpg", status: "released", genres: ["horror"] },
+  { title: "Ready or Not: Here I Come", date: "March 20, 2026", posterPath: "jRf89HVEtBZiSnOXXWDhZOfuTwW.jpg", status: "released", genres: ["horror"] },
+  { title: "Project Hail Mary", date: "March 20, 2026", posterPath: "yihdXomYb5kTeSivtFndMy5iDmf.jpg", status: "released", genres: ["sci-fi"] },
+  // Coming
+  { title: "Weekend at the End of the World", date: "April 20, 2026", posterPath: "lmkxctsfitUnLTbqLJHFjGJr5ru.jpg", status: "coming", genres: ["horror", "sci-fi"] },
+  { title: "Mortal Kombat II", date: "May 8, 2026", posterPath: "io7wVbm9VKaanIcuAymCDy9dmjU.jpg", status: "coming", genres: ["sci-fi"] },
+  { title: "The Mandalorian and Grogu", date: "May 22, 2026", posterPath: "m8lEffySgTuKxN3VsMd2gdgx1aw.jpg", status: "coming", genres: ["sci-fi"] },
+  { title: "Backrooms", date: "May 29, 2026", posterPath: "vpkNMkbisv5cTaIfCzUduYzXnjb.jpg", status: "coming", genres: ["horror"] },
+  { title: "Masters of the Universe", date: "June 5, 2026", posterPath: "nm2ianYVp7OXElUZVeeAbNTqBLr.jpg", status: "coming", genres: ["sci-fi"] },
+  { title: "Disclosure Day", date: "June 12, 2026", posterPath: "7RYO0KTXIJ0rS0LqnCQLxeNR3P3.jpg", status: "coming", genres: ["sci-fi"] },
+  { title: "Supergirl", date: "June 26, 2026", posterPath: "niSvU02l2BONH9ivubV6K1a5QiK.jpg", status: "coming", genres: ["sci-fi"] },
+  { title: "Evil Dead Burn", date: "July 24, 2026", posterPath: null, status: "coming", genres: ["horror"] },
+  { title: "The End of Oak Street", date: "August 14, 2026", posterPath: "u9jha7bkttIrc5RO1TWeSn7QVyI.jpg", status: "coming", genres: ["sci-fi"] },
+  { title: "Insidious: Out of the Further", date: "August 21, 2026", posterPath: "4tTrW9dXCByS5wt2pXVWb58zNjz.jpg", status: "coming", genres: ["horror"] },
+  { title: "Resident Evil", date: "September 18, 2026", posterPath: "3WkDXYtOwYHFFkpysAPxPgUMox0.jpg", status: "coming", genres: ["horror", "sci-fi"] },
+  { title: "Godzilla Minus Zero", date: "November 6, 2026", posterPath: "zOeAduPBa1NZyX9TCcWXVpnHy3T.jpg", status: "coming", genres: ["horror", "sci-fi"] },
+  { title: "Dune: Part Three", date: "December 18, 2026", posterPath: "b4wekkUaxExzOeGe7hKXzhnyXHt.jpg", status: "coming", genres: ["sci-fi"] },
 ];
 ---
 
 <BaseLayout title="The Last Frame" description="Upcoming releases and posters.">
   <main class="stage">
     <div class="inner">
-      <header class="brand">
-        <h1 class="brand-heading">
-          <a class="wordmark-link" href="/">
+      <header class="site-header">
+        <h1 class="site-header__brand">
+          <a class="site-header__logo-link" href="/">
             <img
-              class="logo-img"
+              class="site-header__logo"
               src="/the-last-frame-logo.svg"
               alt="The Last Frame"
               width="196"
@@ -41,19 +59,46 @@ const UPCOMING = [
             />
           </a>
         </h1>
+        <nav class="site-header__nav" aria-label="Site">
+          <a class="site-header__nav-link" href="#grid">Browse</a>
+          <a class="site-header__nav-link" href="#">About</a>
+        </nav>
       </header>
 
       <div class="rule" aria-hidden="true"></div>
 
-      <p class="section-label">
-        <span class="section-label-dot" aria-hidden="true"></span>
-        Coming in 2026
-      </p>
+      <div class="toolbar">
+        <div class="toolbar__segment" role="group" aria-label="Release filter">
+          <button type="button" class="seg-btn seg-btn--active" data-view="coming" aria-pressed="true">
+            Coming in 2026
+          </button>
+          <button type="button" class="seg-btn" data-view="released" aria-pressed="false">
+            Released
+          </button>
+        </div>
+        <div class="toolbar__filters" role="group" aria-label="Genre filter">
+          <button type="button" class="filter-btn filter-btn--active" data-filter="all" aria-pressed="true">
+            All
+          </button>
+          <button type="button" class="filter-btn" data-filter="horror" aria-pressed="false">
+            Horror
+          </button>
+          <button type="button" class="filter-btn" data-filter="sci-fi" aria-pressed="false">
+            Sci-Fi
+          </button>
+        </div>
+      </div>
 
-      <div class="poster-grid">
+      <div class="poster-grid" id="grid" data-movie-grid>
         {
-          UPCOMING.map((item) => (
-            <article class="poster-card">
+          FILMS.map((item) => (
+            <article
+              class="poster-card"
+              data-poster-card
+              data-status={item.status}
+              data-genres={item.genres.join(" ")}
+              hidden={item.status === "released"}
+            >
               <div class="poster-card__media">
                 {item.posterPath ? (
                   <img
@@ -91,6 +136,66 @@ const UPCOMING = [
   </main>
 </BaseLayout>
 
+<script>
+  (function () {
+    const cards = document.querySelectorAll("[data-poster-card]");
+    const segButtons = document.querySelectorAll("[data-view]");
+    const filterButtons = document.querySelectorAll("[data-filter]");
+
+    let view = "coming";
+    /** @type {"all" | "horror" | "sci-fi"} */
+    let filter = "all";
+
+    function apply() {
+      cards.forEach((el) => {
+        const st = el.getAttribute("data-status");
+        const genres = (el.getAttribute("data-genres") || "").split(/\s+/).filter(Boolean);
+        let show = st === view;
+        if (show && filter !== "all") {
+          show = genres.includes(filter);
+        }
+        el.hidden = !show;
+      });
+    }
+
+    /** @param {"coming" | "released"} v */
+    function setSegActive(v) {
+      view = v;
+      segButtons.forEach((btn) => {
+        const on = btn.getAttribute("data-view") === v;
+        btn.classList.toggle("seg-btn--active", on);
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      apply();
+    }
+
+    /** @param {"all" | "horror" | "sci-fi"} f */
+    function setFilterActive(f) {
+      filter = f;
+      filterButtons.forEach((btn) => {
+        const on = btn.getAttribute("data-filter") === f;
+        btn.classList.toggle("filter-btn--active", on);
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      apply();
+    }
+
+    segButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const v = btn.getAttribute("data-view");
+        if (v === "coming" || v === "released") setSegActive(v);
+      });
+    });
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const f = btn.getAttribute("data-filter");
+        if (f === "all" || f === "horror" || f === "sci-fi") setFilterActive(f);
+      });
+    });
+  })();
+</script>
+
 <style>
   .stage {
     min-height: 100vh;
@@ -98,7 +203,7 @@ const UPCOMING = [
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 1.5rem) clamp(2.5rem, 6vw, 4rem);
+    padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 4vw, 1.5rem) clamp(2.5rem, 6vw, 4rem);
   }
 
   .inner {
@@ -106,36 +211,36 @@ const UPCOMING = [
     max-width: 72rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     text-align: center;
   }
 
-  .brand {
+  .site-header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
     width: 100%;
   }
 
-  .brand-heading {
+  .site-header__brand {
     margin: 0;
     line-height: 0;
   }
 
-  .wordmark-link {
+  .site-header__logo-link {
     display: inline-block;
     text-decoration: none;
-    color: inherit;
     border: none;
     outline: none;
   }
 
-  .wordmark-link:focus-visible {
+  .site-header__logo-link:focus-visible {
     border-radius: 8px;
     box-shadow: 0 0 0 2px #08080a, 0 0 0 4px rgba(201, 162, 39, 0.65);
   }
 
-  .logo-img {
+  .site-header__logo {
     display: block;
     width: min(100%, 240px);
     max-width: 100%;
@@ -143,35 +248,158 @@ const UPCOMING = [
     max-height: 92px;
   }
 
+  .site-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+  }
+
+  .site-header__nav-link {
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9a948a;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .site-header__nav-link:hover {
+    color: #d4cdc0;
+    border-bottom-color: rgba(201, 162, 39, 0.35);
+  }
+
+  @media (min-width: 900px) {
+    .site-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .site-header__nav {
+      justify-content: flex-end;
+    }
+  }
+
   .rule {
     width: min(10rem, 45vw);
     height: 1px;
-    margin: clamp(1.5rem, 4vw, 2.25rem) 0;
-    align-self: center;
+    margin: clamp(1.25rem, 3vw, 1.75rem) auto;
     background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.35), transparent);
   }
 
-  .section-label {
-    margin: 0 0 1.75rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    font-family: "Manrope", system-ui, sans-serif;
-    font-size: 0.625rem;
-    font-weight: 600;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: #8a847a;
+  .toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
   }
 
-  .section-label-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #c9a227;
-    box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
-    flex-shrink: 0;
+  .toolbar__segment {
+    display: inline-flex;
+    align-self: center;
+    padding: 3px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .seg-btn {
+    appearance: none;
+    margin: 0;
+    padding: 0.45rem 1rem;
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a847a;
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .seg-btn:hover {
+    color: #c9c2b8;
+  }
+
+  .seg-btn--active {
+    color: #f4f1ec;
+    background: linear-gradient(180deg, rgba(201, 162, 39, 0.22) 0%, rgba(201, 162, 39, 0.08) 100%);
+    box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.25);
+  }
+
+  .seg-btn:focus-visible,
+  .filter-btn:focus-visible {
+    outline: 2px solid rgba(201, 162, 39, 0.65);
+    outline-offset: 2px;
+  }
+
+  .toolbar__filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    appearance: none;
+    margin: 0;
+    padding: 0.35rem 0.85rem;
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a847a;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    transition:
+      color 0.15s ease,
+      background 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .filter-btn:hover {
+    color: #c9c2b8;
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .filter-btn--active {
+    color: #ede8df;
+    background: rgba(201, 162, 39, 0.12);
+    border-color: rgba(201, 162, 39, 0.35);
+  }
+
+  @media (min-width: 900px) {
+    .toolbar {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 1.5rem;
+    }
+
+    .toolbar__segment {
+      align-self: auto;
+    }
+
+    .toolbar__filters {
+      justify-content: flex-end;
+      margin-left: auto;
+    }
   }
 
   .poster-grid {
@@ -200,6 +428,10 @@ const UPCOMING = [
     box-shadow:
       0 0 0 1px rgba(0, 0, 0, 0.35) inset,
       0 16px 40px -14px rgba(0, 0, 0, 0.75);
+  }
+
+  .poster-card[hidden] {
+    display: none;
   }
 
   .poster-card__media {
@@ -283,7 +515,7 @@ const UPCOMING = [
   }
 
   .attribution {
-    margin: 2.25rem 0 0;
+    margin: 2.25rem auto 0;
     max-width: 22rem;
     font-family: "Manrope", system-ui, sans-serif;
     font-size: 0.6875rem;
