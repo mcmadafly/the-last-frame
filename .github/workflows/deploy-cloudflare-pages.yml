@@ -1,18 +1,14 @@
-# Build + deploy to Cloudflare Pages on every push to `main`.
+# Optional manual deploy from GitHub Actions (Run workflow). Production deploys use
+# Cloudflare Pages → Connect to Git (build on push to main), not this workflow.
 #
-# Required GitHub repository secrets (Settings → Secrets and variables → Actions):
-#   CLOUDFLARE_API_TOKEN   — API token with "Account" → "Cloudflare Pages" → "Edit"
-#   CLOUDFLARE_ACCOUNT_ID  — Workers & Pages → your account id (right sidebar in dashboard)
-#
-# Create API token: https://developers.cloudflare.com/fundamentals/api/get-started/create-token/
-# Use the "Edit Cloudflare Workers" template or a custom token with Pages Edit.
+# Secrets (only if you use workflow_dispatch):
+#   CLOUDFLARE_API_TOKEN   — Pages Edit (or Workers template)
+#   CLOUDFLARE_ACCOUNT_ID  — Workers & Pages → account id
 
 name: Deploy Cloudflare Pages
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 concurrency:
   group: pages-deploy-main

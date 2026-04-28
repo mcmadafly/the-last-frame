@@ -3,13 +3,11 @@
 # Git-connected Pages (dashboard → Settings → Builds):
 #   Build command:            npm run build
 #   Build output directory:  dist
-#   Deploy command:          LEAVE EMPTY. Cloudflare uploads dist/ + ./functions automatically.
+#   Deploy command:          npx wrangler pages deploy dist --project-name=the-last-frame
+#                            (if empty is not allowed). Never use `wrangler deploy`.
 #
-# Do NOT set Deploy command to `wrangler deploy` — that targets Workers and fails
-# (no Worker entry point). If you must set one, use only:
-#   npm run pages:upload
-#
-# CLI / GitHub Actions: npm run pages:deploy
+# Optional: GitHub Actions workflow is workflow_dispatch-only — push to main does not deploy via GH.
+# Local: npm run pages:deploy
 
 name = "the-last-frame"
 compatibility_date = "2024-11-12"
