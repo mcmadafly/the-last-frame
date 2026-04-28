@@ -1,0 +1,69 @@
+<!--
+  Archived Sinners homepage hero (The Last Frame).
+  Restoring: replace the live <section class="hero">…</section> in src/pages/index.html
+  (and the-last-frame.html if kept in sync) with the markup below. In the same file’s
+  <style> block, set .hero-bg’s background image url to:
+  https://image.tmdb.org/t/p/w1280/nAxGnGHOsfzufThz20zgmRwKur3.jpg
+-->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-art">
+    <div class="hero-glow hg1"></div>
+    <div class="hero-glow hg2"></div>
+    <div class="hero-glow hg3"></div>
+    <!-- Large cinematic SVG backdrop for Sinners -->
+    <svg style="position:absolute;right:0;top:0;width:65%;height:100%;opacity:.18" viewBox="0 0 700 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="hbg" cx="60%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#8b0a14" stop-opacity=".7"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="700" height="800" fill="url(#hbg)"/>
+      <!-- Delta / angular shapes suggesting blues music -->
+      <polygon points="350,0 700,400 350,800 0,400" fill="none" stroke="rgba(200,16,46,.15)" stroke-width="1"/>
+      <polygon points="350,80 620,400 350,720 80,400" fill="none" stroke="rgba(200,16,46,.1)" stroke-width="0.5"/>
+      <line x1="350" y1="0" x2="350" y2="800" stroke="rgba(200,16,46,.08)" stroke-width="0.5"/>
+      <line x1="0" y1="400" x2="700" y2="400" stroke="rgba(200,16,46,.08)" stroke-width="0.5"/>
+      <!-- Cross -->
+      <line x1="300" y1="100" x2="300" y2="340" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
+      <line x1="240" y1="200" x2="360" y2="200" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="filmstrip">
+    <div class="fh"></div><div class="fh"></div><div class="fh"></div><div class="fh"></div>
+    <div class="fh"></div><div class="fh"></div><div class="fh"></div><div class="fh"></div>
+    <div class="fh"></div><div class="fh"></div><div class="fh"></div><div class="fh"></div>
+    <div class="fh"></div><div class="fh"></div><div class="fh"></div><div class="fh"></div>
+    <div class="fh"></div><div class="fh"></div><div class="fh"></div><div class="fh"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="eyebrow">
+      <div class="badge">Feature Pick</div>
+      <span class="studio-lbl">Warner Bros.</span>
+    </div>
+    <h1 class="hero-title">Sin<em>ners</em></h1>
+    <div class="hero-meta">
+      <span class="h-year">2025</span>
+      <div class="h-dot"></div>
+      <span class="h-tag">Horror</span>
+      <div class="h-dot"></div>
+      <span class="h-tag" style="border-color:rgba(232,160,48,.5);color:var(--amber)">Supernatural</span>
+    </div>
+    <p class="hero-syn">Ryan Coogler's Southern Gothic masterpiece — twin brothers return to 1930s Mississippi to start a new life, only to encounter an evil far more terrifying than anything they left behind. $367M worldwide.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn-p">Read Review</a>
+      <a href="#" class="btn-g">▶ Watch Trailer</a>
+    </div>
+  </div>
+
+  <!-- Hero poster: Sinners — TMDB poster w500 -->
+  <div class="hero-poster-wrap">
+    <div class="hero-poster">
+      <img src="https://image.tmdb.org/t/p/w500/705nQHqe4JGdEisrQmVYmXyjs1U.jpg" alt="Sinners poster" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="pc pc-tl"></div><div class="pc pc-tr"></div>
+      <div class="pc pc-bl"></div><div class="pc pc-br"></div>
+    </div>
+  </div>
+</section>
