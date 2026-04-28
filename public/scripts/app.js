@@ -1,4 +1,3 @@
-<script>
 (function() {
   /** @type {{ githubRepoUrl?: string }} — fallback if JSON missing */
   const SITE = { GITHUB_FALLBACK: 'https://github.com/mcmadafly/the-last-frame' };
