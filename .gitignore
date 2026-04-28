@@ -23,3 +23,9 @@ pnpm-debug.log*
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Local agent sessions
+.claude/
+
+# Cloudflare local secrets
+.dev.vars

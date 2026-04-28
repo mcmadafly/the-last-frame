@@ -1,0 +1,12 @@
+---
+description: Single-branch workflow — commit only to main, no feature branches unless explicitly requested.
+alwaysApply: true
+---
+
+# Git — work on `main` only
+
+- Use **`main`** as the only long-lived branch for this repo. Routine work is committed directly on **`main`**.
+- Do **not** create feature branches, `release/*` branches, or extra integration branches unless the user explicitly asks for a branch-based workflow.
+- Do **not** open or assume pull requests from side branches for normal changes; deploys and history should flow from **`main`**.
+- Avoid **`git worktree`** or parallel checkouts for ongoing work unless the user requests isolation (e.g. an experiment they will merge themselves).
+- If a git command would create a new branch (e.g. `git checkout -b …`), stop and confirm with the user first.

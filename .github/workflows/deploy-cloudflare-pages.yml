@@ -1,0 +1,47 @@
+# Build + deploy to Cloudflare Pages on every push to `main`.
+#
+# Required GitHub repository secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   — API token with "Account" → "Cloudflare Pages" → "Edit"
+#   CLOUDFLARE_ACCOUNT_ID  — Workers & Pages → your account id (right sidebar in dashboard)
+#
+# Create API token: https://developers.cloudflare.com/fundamentals/api/get-started/create-token/
+# Use the "Edit Cloudflare Workers" template or a custom token with Pages Edit.
+
+name: Deploy Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: pages-deploy-main
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=the-last-frame

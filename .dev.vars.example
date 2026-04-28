@@ -1,0 +1,4 @@
+# Copy to .dev.vars for local `npm run pages:dev` (never commit .dev.vars)
+RESEND_API_KEY=re_xxxxxxxx
+# Optional: add new subscribers to a Resend Segment (dashboard → Segments → id)
+# RESEND_SEGMENT_ID=seg_xxxxxxxx

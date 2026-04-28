@@ -8,13 +8,16 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "pages:dev": "npm run build && wrangler pages dev dist",
+    "pages:deploy": "npm run build && wrangler pages deploy dist"
   },
   "dependencies": {
     "astro": "^5.16.0"
   },
   "devDependencies": {
     "typescript": "^5.9.0",
-    "vite-plugin-full-reload": "^1.2.0"
+    "vite-plugin-full-reload": "^1.2.0",
+    "wrangler": "^4.28.0"
   }
 }

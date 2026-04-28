@@ -1,95 +1,73 @@
 ---
+import "../styles/global.css";
+
 interface Props {
   title?: string;
-  description?: string;
+  metaDescription?: string;
+  canonicalUrl?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogUrl?: string;
+  ogImage?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
 }
 
 const {
-  title = "The Last Frame",
-  description = "Trailers and upcoming releases.",
+  title = "The Last Frame — Horror & science fiction cinema",
+  metaDescription = "The Last Frame covers horror and science fiction film — new releases, upcoming genre picks, and editorial. We only cover horror and sci-fi.",
+  canonicalUrl = "https://thelastframe.io/",
+  ogTitle = "The Last Frame — Horror & science fiction cinema",
+  ogDescription = "The Last Frame covers horror and science fiction film — new releases, upcoming genre picks, and editorial.",
+  ogUrl = "https://thelastframe.io/",
+  ogImage = "https://image.tmdb.org/t/p/w1280/mCpwRayjXMFzKHbjbzc5JRKfq1O.jpg",
+  twitterTitle = "The Last Frame — Horror & science fiction cinema",
+  twitterDescription = "The Last Frame covers horror and science fiction film — new releases, upcoming genre picks, and editorial.",
+  twitterImage = "https://image.tmdb.org/t/p/w1280/mCpwRayjXMFzKHbjbzc5JRKfq1O.jpg",
 } = Astro.props;
+
+const jsonLdDefault = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "The Last Frame",
+      description: "Horror and science fiction cinema.",
+      url: "https://thelastframe.io/",
+    },
+  ],
+});
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#08080a" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="description" id="meta-description" content={metaDescription} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#080808" />
+    <link rel="canonical" id="canonical-link" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Last Frame" />
+    <meta property="og:title" id="og-title" content={ogTitle} />
+    <meta property="og:description" id="og-description" content={ogDescription} />
+    <meta property="og:url" id="og-url" content={ogUrl} />
+    <meta property="og:image" id="og-image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" id="tw-title" content={twitterTitle} />
+    <meta name="twitter:description" id="tw-description" content={twitterDescription} />
+    <meta name="twitter:image" id="tw-image" content={twitterImage} />
+    <script type="application/ld+json" id="jsonld-block" set:html={jsonLdDefault}></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <div class="bg-vignette" aria-hidden="true"></div>
-    <div class="bg-grain" aria-hidden="true"></div>
     <slot />
   </body>
 </html>
-
-<style is:global>
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  html {
-    color-scheme: dark;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-x: hidden;
-    font-family: "Manrope", system-ui, sans-serif;
-    font-weight: 500;
-    background: #08080a;
-    background-image: radial-gradient(ellipse 90% 65% at 50% -5%, rgba(55, 48, 40, 0.35), transparent 52%);
-    color: #f4f1ec;
-    line-height: 1.5;
-    position: relative;
-  }
-
-  .bg-vignette {
-    pointer-events: none;
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(ellipse 75% 60% at 50% 45%, transparent 30%, rgba(0, 0, 0, 0.55) 100%);
-    z-index: 0;
-  }
-
-  .bg-grain {
-    pointer-events: none;
-    position: fixed;
-    inset: 0;
-    opacity: 0.035;
-    z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  body > :not(.bg-vignette):not(.bg-grain) {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Only style explicit text links — do not style logo / layout as links */
-  .text-link {
-    color: #c9b896;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(201, 184, 150, 0.35);
-    transition: color 0.15s ease, border-color 0.15s ease;
-  }
-
-  .text-link:hover {
-    color: #ede6d8;
-    border-bottom-color: rgba(237, 230, 216, 0.5);
-  }
-</style>

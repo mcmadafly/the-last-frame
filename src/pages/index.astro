@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import homeMarkup from "../partials/home-markup.html?raw";
+---
+
+<BaseLayout>
+  <Fragment set:html={homeMarkup} />
+  <script defer src="/scripts/app.js"></script>
+</BaseLayout>
