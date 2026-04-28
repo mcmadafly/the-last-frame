@@ -1,7 +1,15 @@
-# Cloudflare Pages: static build + Functions in /functions
-# Build: npm run build  →  output: dist/
-# Dev:   npm run pages:dev  (needs .dev.vars with RESEND_API_KEY for subscribe)
-# Deploy: npm run pages:deploy  (set secrets in the Pages project dashboard or CLI)
+# Cloudflare Pages — static Astro + Functions in ./functions
+#
+# Git-connected Pages (dashboard → Settings → Builds):
+#   Build command:            npm run build
+#   Build output directory:  dist
+#   Deploy command:          LEAVE EMPTY. Cloudflare uploads dist/ + ./functions automatically.
+#
+# Do NOT set Deploy command to `wrangler deploy` — that targets Workers and fails
+# (no Worker entry point). If you must set one, use only:
+#   npm run pages:upload
+#
+# CLI / GitHub Actions: npm run pages:deploy
 
 name = "the-last-frame"
 compatibility_date = "2024-11-12"
